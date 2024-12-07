@@ -9517,52 +9517,5 @@ local function wl(key)
             }
         )
             else
-        RemoveKey()
-        Notify.New('key expired / does not exist', 5)
-    	print('key expired / does not exist')
-        sign_match = nil
-        securekeyprivate = nil
-        response = nil
-        privatekeyclient = nil
-        client_id = nil
-        client_req = nil
-        client_hwid = nil
-        client_ip = nil 
-        server_time = nil
-        sp = nil
-        rndStr = nil
-        client_sign = nil
-        decode_response = nil
-    end
-end
-
-spawn(function()
-    local KEY = ReadKey()
-    if KEY and #KEY >= 2 then
-        object.Desc.Text = 'Succesfully loaded key!'
-        Notify.New("Succesfully loaded key!", 5)
-        wl(KEY)
-    end
-end)
-
-object.CheckKey.MouseButton1Click:Connect(function()
-    if not GetKeyText() or #GetKeyText() < 10 then
-        object.Desc.Text = 'Please input your key';
-        spawn(function()
-            delay(5, function()
-                object.Desc.Text = "Click 'Get Key' button to get your key!"
-            end);
-        end)
-        return
-    end
-    wl(GetKeyText())
-end)
- 
-object.GetKey.MouseButton1Click:Connect(function()
-    print('get key')
-    --object.Desc.Text = 'cccc'
-    local link = (URL..'getkey?hwid=%s'):format(REQ({Url = URL..'api/hwid', Method = 'GET'}).Body)
-    object.TextBox.Text = link
-    setclipboard(link)
 end)
 
